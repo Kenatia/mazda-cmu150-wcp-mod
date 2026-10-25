@@ -8,6 +8,16 @@ Enable native Wireless Apple CarPlay on compatible Mazda CMU150 hardware origina
 - **Firmware:** `V74.00.324`
 - **Status:** Successfully tested
 
+## How It Works
+
+The installer enables Wireless CarPlay by modifying three CMU components:
+
+- **`get_board_type.sh`** — Spoofs the hardware detection result based on the calling process to enable WCP behavior.
+- **`sm_WCP.conf`** — Adjusts `jciLDS` and `jcinavi` service settings, including GPS arguments and board reset behavior.
+- **`autostart`** — Prevents the startup process from creating `ublox.txt`.
+
+The installer backs up the original files before applying changes, validates the modifications, and reboots the CMU after installation. An uninstaller is included to restore the original files from backups.
+
 ## Requirements
 
 - Firmware **74.00.324**
